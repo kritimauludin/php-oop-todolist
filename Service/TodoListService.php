@@ -5,7 +5,8 @@ namespace Service {
     use Entity\TodoList;
     use Repository\TodoListRepository;
 
-    interface TodoListService {
+    interface TodoListService
+    {
 
         function showTodoList(): void;
 
@@ -14,7 +15,8 @@ namespace Service {
         function removeTodoList(int $number): void;
     }
 
-    class TodoListServiceImpl implements TodoListService {
+    class TodoListServiceImpl implements TodoListService
+    {
 
         private TodoListRepository $todoListRepository;
 
@@ -28,24 +30,23 @@ namespace Service {
             echo "TODOLIST" . PHP_EOL;
             $todoList = $this->todoListRepository->findAll();
             foreach ($todoList as $number => $value) {
-                echo "$number. ". $value->getTodo() . PHP_EOL;
-            }   
-            
+                echo $value->getId() . ". " . $value->getTodo() . PHP_EOL;
+            }
         }
 
         function addTodoList(string $todo): void
         {
             $todoList = new TodoList($todo);
             $this->todoListRepository->save($todoList);
-            echo "Successfuly Add TodoList". PHP_EOL;            
+            echo "Successfuly Add TodoList" . PHP_EOL;
         }
 
         function removeTodoList(int $number): void
         {
-            if($this->todoListRepository->remove($number)){
-                echo "TodoList Has Been Deleted". PHP_EOL;
-            }else {
-                echo "Failed delete TodoList". PHP_EOL;
+            if ($this->todoListRepository->remove($number)) {
+                echo "TodoList Has Been Deleted" . PHP_EOL;
+            } else {
+                echo "Failed delete TodoList" . PHP_EOL;
             }
         }
     }

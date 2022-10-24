@@ -1,8 +1,10 @@
 <?php
 
 namespace Entity {
-    class TodoList {
+    class TodoList
+    {
 
+        private int $id;
         private string $todo;
 
         public function __construct(string $todo = "")
@@ -17,7 +19,7 @@ namespace Entity {
          */
         public function getTodo(): string
         {
-                return $this->todo;
+            return $this->todo;
         }
 
         /**
@@ -29,9 +31,33 @@ namespace Entity {
          */
         public function setTodo(string $todo): self
         {
-                $this->todo = $todo;
+            $this->todo = $todo;
 
-                return $this;
+            return $this;
+        }
+
+        /**
+         * Get the value of id
+         *
+         * @return int
+         */
+        public function getId(): int
+        {
+            return $this->id;
+        }
+
+        /**
+         * Set the value of id
+         *
+         * @param int $id
+         *
+         * @return self
+         */
+        public function setId(int $id): self
+        {
+            $this->id = $id;
+
+            return $this;
         }
     }
 }
